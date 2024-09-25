@@ -5,7 +5,8 @@ All scripts are stored in the folder `scripts`. Intermediate files (such as the 
 
 All analyses are conducted using LRZ BioHPC, LRZ CM2, and LRZ AI clusters. Pipeline written by Chyiyin Gwee (contact chyiyingwee[@]gmail.com)
 
-`pipeline.md` documents steps in the following order (with the corresponding scripts in bracket):
+`pipeline.md` in the following order (with the corresponding scripts in bracket):
+`tip: use sidebar to skip to a particular analysis of the markdown` 
 
 * Raw data processing (1.1*-1.3*)
 * Variant calling (1.4*)
