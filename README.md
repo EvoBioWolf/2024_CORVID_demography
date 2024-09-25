@@ -1,4 +1,4 @@
-# 2024_CORVID_demography
+# 2024_CORVUS_demography
 
 See `pipeline.md` for all analyses done, except Jaatha, which is documented in a separate markdown. 
 All scripts are stored in the folder `scripts`. Intermediate files (such as the `tpl` and `est` input files for Fastsimcoal) are stored in respective subfolders with the scripts
