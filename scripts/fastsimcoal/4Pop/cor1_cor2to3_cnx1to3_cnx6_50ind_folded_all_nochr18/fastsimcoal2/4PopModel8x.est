@@ -1,0 +1,31 @@
+// Priors and rules file
+// *********************
+
+[PARAMETERS]
+//#isInt? #name   #dist.#min  #max 
+//all Ns are in number of haploid individuals
+1       NPOP1   logunif 1000    1000000  output
+1       NPOP2   logunif 1000    1000000  output
+1       NPOP3   logunif 1000    1000000  output
+1       NPOP4   logunif 1000    1000000 output
+1       NANC1   logunif 1000    1000000 output
+1       NANC2   logunif 1000    1000000 output
+1       NANC3   logunif 1000    1000000 output
+1       TMRMG   logunif 100     10000   output   bounded
+1       TDIV3   logunif TMRMG  150000 output   paramInRange
+1       TDIV2   logunif TMRMG  TDIV3  output   paramInRange
+1       TDIV1   logunif TMRMG  TDIV2  output   paramInRange
+1       TEGR1   logunif 1  TMRMG  output   paramInRange
+1       TEGR2   logunif TMRMG  TDIV1  output   paramInRange
+0       MIG01R   logunif 5e-6    0.01    output
+0       MIG10R   logunif 5e-6    0.01    output
+0       MIG12R   logunif 5e-6    0.01    output
+0       MIG21R   logunif 5e-6    0.01    output
+0       MIG23R   logunif 5e-6    0.01    output
+0       MIG32R   logunif 5e-6    0.01    output
+0       GROW1   unif      -0.001   0.00    output
+0       GROW2   unif      -0.001   0.00    output
+
+[RULES]
+
+[COMPLEX PARAMETERS]

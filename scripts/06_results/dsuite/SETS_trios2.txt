@@ -1,0 +1,10 @@
+cor2	cor3	cnx1
+cor2	cor3	cnx2
+cor2	cor3	cnx3P
+cor2	cor3	cnx3S
+cor2	cor3	cnx4
+cor2	cor3	cnx5
+cor2	cor3	cnx6
+ori1	ori3	pec1
+ori2	ori3	pec1
+ori1	ori2	pec1
