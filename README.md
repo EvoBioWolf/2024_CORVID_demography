@@ -1,11 +1,11 @@
 # 2024_CORVUS_demography
 
-See `pipeline.md` for all analyses done, except Jaatha, which is documented in a separate markdown. 
-All scripts are stored in the folder `scripts`. Intermediate files (such as the `tpl` and `est` input files for Fastsimcoal) are stored in respective subfolders with the scripts
+See [pipeline.md](./pipeline.md) for all analyses done, except Jaatha, which is documented in a separate markdown. 
+All scripts are stored in the folder [scripts](./scripts/). Intermediate files (such as the input files for [Fastsimcoal](./scripts/fastsimcoal/)) are stored in respective subfolders with the scripts
 
 All analyses are conducted using LRZ BioHPC, LRZ CM2, and LRZ AI clusters. Pipeline written by Chyiyin Gwee (contact chyiyingwee[@]gmail.com)
 
-`pipeline.md` in the following order (link to scripts):
+[pipeline.md](./pipeline.md) in the following order (link to scripts):
 
 * Raw data processing: [trim](./scripts/1.1.1_rawreads_pro.sh), [map ](./scripts/1.2.1_map.sh), [rmdup](./scripts/1.3.1_markdup.sh), [mapDamage](./scripts/1.3.2_mapdamage.sh), [ploidy](./scripts/1.3.4_ploidy.sh)
 * Variant calling: [ANGSD](./scripts/1.4.1_angsdrecal.sh), [SAMtools](./scripts/samtools), [GATK](./scripts/1.4.3_GATKrawHap.sh), [overlap](./scripts/1.4.5_overlap.sh), [paralog](./scripts/1.4.5_paralogs.sh), [pop files](./scripts/05.1_recal/) 
