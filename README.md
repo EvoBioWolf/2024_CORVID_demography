@@ -3,7 +3,7 @@
 See [pipeline.md](./pipeline.md) for a detailed documentation of all analyses done, except Jaatha, which is documented in [jaatha_scripts/Rscripts/README.md](./jaatha_scripts/Rscripts/README.md). 
 All scripts are stored in the folder [scripts](./scripts/). Intermediate files (such as the input files for [Fastsimcoal](./scripts/fastsimcoal/)) are stored in respective subfolders with the scripts
 
-All analyses are conducted using LRZ BioHPC, LRZ CM2, and LRZ AI clusters. Pipeline written by Chyiyin Gwee (contact chyiyingwee[@]gmail.com)
+All analyses are conducted using LRZ BioHPC, LRZ CM2, and LRZ AI clusters. Pipeline written by Chyiyin Gwee (contact chyiyingwee[@]gmail.com); code for jaatha analyes by Dirk Metzler (https://github.com/DirkMetzler)
 
 [pipeline.md](./pipeline.md) in the following order (link to scripts):
 
