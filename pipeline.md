@@ -1766,17 +1766,6 @@ I ran a few variation of models to test if CEU is from Spain or hooded crows. He
 | 3 vs 4 | 430,218,015 | 430,354,379 |  same as 3x4 and 4x3 |
 | 7x vs 8x | 430,169,400 | 430,364,442 |  2 GR of diff rate |
 
-<b> Folded (without chr18) </b>
-
-| 99/100 rep | Model1 | Model 2 |
-:---:|:---:|:---:
-|  | <img src="./fastsimcoal/folded/nochr18/4PopModel1.jpeg" width="600" height=auto /> | <img src="./fastsimcoal/folded/nochr18/4PopModel2.jpeg" width="600" height=auto /> |
-| 93/98 rep | Model3 | Model 4 |
-|  | <img src="./fastsimcoal/folded/nochr18/4PopModel3.jpeg" width="600" height=auto /> | <img src="./fastsimcoal/folded/nochr18/4PopModel4.jpeg" width="600" height=auto /> |
-| 100/100 rep | Model7x | Model 8x |
-|  | <img src="./fastsimcoal/folded/nochr18/4PopModel7x.jpeg" width="600" height=auto /> | <img src="./fastsimcoal/folded/nochr18/4PopModel8x.jpeg" width="600" height=auto /> |
-
-
 ### Summary of best models from jaatha and fsimcoal runs - without chr18
 
 13 sep 24: updated with corrected Jaatha estimates
