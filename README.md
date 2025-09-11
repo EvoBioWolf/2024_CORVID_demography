@@ -22,3 +22,7 @@ All analyses are conducted using clusters BioHPC, CoolMUC-2 and the interactive 
 * Fastsimcoal2: [SFS](./scripts/1.6.3_easySFS_folded.sh), [parameter estimation](./scripts/1.6.3_fastsimcoal_folded.sh), [plot](./scripts/1.6.4_plot.sh), [simulate SFS from estimates](./scripts/1.6.4_modelfit_folded.sh), [bootstrap](./scripts/1.6.5_simparabs_folded.sh), [input files](./scripts/fastsimcoal/4Pop)
 * [TWISST](./scripts/1.5.7_twisst.sh): [input files](./scripts/06_results/twisst/)
 * Fastsimcoal to TWISST: [simulate trees](./scripts/1.6.6_fastsimcoalTwisst.sh), [twisst](./scripts/1.6.6_twisstsim.sh), [input files](./scripts/fastsimcoal/4Pop/cor1_cor2to3_cnx1to3_cnx6_50ind_folded_all_nochr18/fastsimcoal2/twisst/)
+
+Citation:
+Gwee, C.Y., Metzler, D., Fuchs, J. and Wolf, J.B.W. (2025), Reconciling Gene Tree Discordance and Biogeography in European Crows. Mol Ecol, 34: e17764. [https://doi.org/10.1111/mec.17764](https://doi.org/10.1111/mec.17764)
+[Supplemental information](https://onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1111%2Fmec.17764&file=mec17764-sup-0001-DataS1.pdf)
