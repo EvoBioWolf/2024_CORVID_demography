@@ -8,7 +8,7 @@ library(ggpubr)
 
 args <- commandArgs(trailingOnly = TRUE)
 
-setwd("/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2")
+setwd("Path/04_fresh2")
 poplist <- read.delim(file=paste(args[4],".txt",sep=""))
 
 setwd(args[2])
@@ -56,7 +56,7 @@ stringsAsFactors = FALSE)
 #extract vectors out for external plotting
 tab$POP <- poplist$pop
 
-setwd("/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2")
+setwd("Path/04_fresh2")
 setwd(args[3])
 write.csv(tab, file=paste(args[1],"snprelate.txt",sep="_"))
 
@@ -151,7 +151,7 @@ ggplot(tab, group=POP) +
 dev.off()
 
 ##Nomissingness
-setwd("/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2")
+setwd("Path/04_fresh2")
 setwd(args[2])
 vcf.pca <- snpgdsPCA(vcf.gdsfile, autosome.only=FALSE, missing.rate=0) ##use autosome.only=false to include all loci
 names(vcf.pca)
@@ -174,7 +174,7 @@ stringsAsFactors = FALSE)
 #extract vectors out for external plotting
 tab$POP <- poplist$pop
 
-setwd("/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2")
+setwd("Path/04_fresh2")
 setwd(args[3])
 write.csv(tab, file=paste(args[1],"nomissing_snprelate.txt",sep="_"))
 
@@ -224,7 +224,7 @@ dev.off()
 
 ##Relatedness analysis
 #IBD using PLINK's method of moments
-# setwd("/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2")
+# setwd("Path/04_fresh2")
 # setwd(args[2])
 # ibd <- snpgdsIBDMoM(vcf.gdsfile, sample.id=poplist$sample_id,
 #     maf=0.001, missing.rate=0.05, autosome.only=FALSE)
@@ -236,7 +236,7 @@ dev.off()
 #     family.id=poplist$pop)
 # fam <- snpgdsIBDSelection(ibd.robust)
 
-# setwd("/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2")
+# setwd("Path/04_fresh2")
 # setwd(args[3])
 # write.csv(ibd.coeff, file=paste(args[1],"idb_mom.txt",sep="_"))
 # write.csv(fam, file=paste(args[1],"idb_king.txt",sep="_"))
