@@ -1,13 +1,5 @@
 #!/bin/bash -l
 #SBATCH -J neutral_invariant
-#SBATCH --get-user-env
-#SBATCH --mail-user=gwee@biologie.uni-muenchen.de
-#SBATCH --clusters=biohpc_gen
-#SBATCH --partition=biohpc_gen_production
-#SBATCH --cpus-per-task=1
-#SBATCH --time=14-00:00:00
-#SBATCH -o /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/slurms/slurm-%j-%x.out
-#SBATCH --mem-per-cpu=4763mb
 
 # sbatch 1.6.1_neutral_invariantsites.sh 134inds_chrDiploid_filtered_norepeats #8 days to complete
 
@@ -16,10 +8,10 @@ module load vcftools/0.1.14-gcc8
 module load bcftools/1.10.2-gcc8
 #picard.jar=2.25.7
 
-ref="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
-neu="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/01_probes/neutral"
-TMPDIR="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
+ref="Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
+dat="Path/04_fresh2"
+neu="Path/01_probes/neutral"
+TMPDIR="Path/04_fresh2"
 
 echo $(date)
 STARTTIME=$(date +%s)
