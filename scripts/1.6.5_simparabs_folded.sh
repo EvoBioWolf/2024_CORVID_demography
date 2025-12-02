@@ -1,14 +1,5 @@
 #!/bin/bash -l
 #SBATCH -J parabsfolded
-#SBATCH --get-user-env
-#SBATCH --mail-user=gwee@biologie.uni-muenchen.de
-#SBATCH --clusters=serial
-#SBATCH --partition=serial_std
-#SBATCH --ntasks=1
-#SBATCH --cpus-per-task=8
-#SBATCH --time=4-00:00:00
-#SBATCH -o /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/slurms/slurm-%j-%x.out
-
 # for i in {1..100}; do sbatch 1.6.5_simparabs_folded.sh 4PopModel7_fastsimcoal $i finite; done
 # for i in {1..100}; do sbatch 1.6.5_simparabs_folded.sh 4PopModel7_jaatha $i finite; done
 # for i in {1..100}; do sbatch 1.6.5_simparabs_folded.sh 4PopModel1_fastsimcoal $i finite; done
@@ -16,8 +7,8 @@
 
 conda activate easySFS
 
-ref="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
+ref="Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
+dat="Path/04_fresh2"
 
 echo $(date)
 STARTTIME=$(date +%s)
