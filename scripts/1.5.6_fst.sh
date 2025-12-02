@@ -1,45 +1,6 @@
 #!/bin/bash -l
 #SBATCH -J fst
-#SBATCH --get-user-env
-#SBATCH --mail-user=gwee@biologie.uni-muenchen.de
-#SBATCH --clusters=biohpc_gen
-#SBATCH --partition=biohpc_gen_normal
-#SBATCH --cpus-per-task=8
-#SBATCH --time=2-00:00:00
-#SBATCH -o /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/slurms/slurm-%j-%x.out
-
-
 # sbatch 1.5.6_fst.sh 134inds_overlapped_filtered_norepeats_hwe_incinvariants cnx3P cor2 hz1 poplist_134
-# sbatch 1.5.6_fst.sh 134inds_overlapped_filtered_norepeats_hwe_incinvariants cnx3P cor1 hz1 poplist_134
-# sbatch 1.5.6_fst.sh 134inds_overlapped_filtered_norepeats_hwe_incinvariants cnx3P cor3 hz1 poplist_134
-# sbatch 1.5.6_fst.sh 134inds_overlapped_filtered_norepeats_hwe_incinvariants cnx6 cor2 hz1 poplist_134
-# sbatch 1.5.6_fst.sh 134inds_overlapped_filtered_norepeats_hwe_incinvariants cnx6 cor1 hz1 poplist_134
-# sbatch 1.5.6_fst.sh 134inds_overlapped_filtered_norepeats_hwe_incinvariants cnx6 cor3 hz1 poplist_134
-# sbatch 1.5.6_fst.sh 134inds_overlapped_filtered_norepeats_hwe_incinvariants cnx1 cor2 hz1 poplist_134
-# sbatch 1.5.6_fst.sh 134inds_overlapped_filtered_norepeats_hwe_incinvariants cnx1 cor1 hz1 poplist_134
-# sbatch 1.5.6_fst.sh 134inds_overlapped_filtered_norepeats_hwe_incinvariants cnx1 cor3 hz1 poplist_134
-# sbatch 1.5.6_fst.sh 134inds_overlapped_filtered_norepeats_hwe_incinvariants cnx2 cor2 hz1 poplist_134
-# sbatch 1.5.6_fst.sh 134inds_overlapped_filtered_norepeats_hwe_incinvariants cnx2 cor1 hz1 poplist_134
-# sbatch 1.5.6_fst.sh 134inds_overlapped_filtered_norepeats_hwe_incinvariants cnx2 cor3 hz1 poplist_134
-# sbatch 1.5.6_fst.sh 134inds_overlapped_filtered_norepeats_hwe_incinvariants cnx3P cnx6 hz1 poplist_134
-# sbatch 1.5.6_fst.sh 134inds_overlapped_filtered_norepeats_hwe_incinvariants cnx1 cnx6 hz1 poplist_134
-# sbatch 1.5.6_fst.sh 134inds_overlapped_filtered_norepeats_hwe_incinvariants cnx2 cnx6 hz1 poplist_134
-
-# sbatch 1.5.6_fst.sh 134inds_overlapped_filtered_norepeats_hwe_incinvariants cnx3S cor1 hz1 poplist_134
-# sbatch 1.5.6_fst.sh 134inds_overlapped_filtered_norepeats_hwe_incinvariants cnx3S cor2 hz1 poplist_134
-# sbatch 1.5.6_fst.sh 134inds_overlapped_filtered_norepeats_hwe_incinvariants cnx3S cor3 hz1 poplist_134
-# sbatch 1.5.6_fst.sh 134inds_overlapped_filtered_norepeats_hwe_incinvariants cnx4 cor1 hz1 poplist_134
-# sbatch 1.5.6_fst.sh 134inds_overlapped_filtered_norepeats_hwe_incinvariants cnx4 cor2 hz1 poplist_134
-# sbatch 1.5.6_fst.sh 134inds_overlapped_filtered_norepeats_hwe_incinvariants cnx4 cor3 hz1 poplist_134
-# sbatch 1.5.6_fst.sh 134inds_overlapped_filtered_norepeats_hwe_incinvariants cnx5 cor1 hz1 poplist_134
-# sbatch 1.5.6_fst.sh 134inds_overlapped_filtered_norepeats_hwe_incinvariants cnx5 cor2 hz1 poplist_134
-# sbatch 1.5.6_fst.sh 134inds_overlapped_filtered_norepeats_hwe_incinvariants cnx5 cor3 hz1 poplist_134
-
-# sbatch 1.5.6_fst.sh 134inds_overlapped_filtered_norepeats_hwe_incinvariants ori1 cnx6 hz1 poplist_134
-# sbatch 1.5.6_fst.sh 134inds_overlapped_filtered_norepeats_hwe_incinvariants ori2 cnx6 hz1 poplist_134
-# sbatch 1.5.6_fst.sh 134inds_overlapped_filtered_norepeats_hwe_incinvariants ori3 cnx6 hz1 poplist_134
-# sbatch 1.5.6_fst.sh 134inds_overlapped_filtered_norepeats_hwe_incinvariants pec1 cnx6 hz1 poplist_134
-
 
 module load vcftools
 module load bcftools
@@ -48,9 +9,9 @@ conda activate biotools
 #module load plink2
 #using plink1.9 instead
 
-ref="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
-scaff="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/01_probes/scaffold2chr"
+ref="Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
+dat="Path/04_fresh2"
+scaff="Path/01_probes/scaffold2chr"
 
 echo $(date)
 STARTTIME=$(date +%s)
