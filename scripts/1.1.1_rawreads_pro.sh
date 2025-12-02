@@ -1,12 +1,5 @@
 #!/bin/bash -l
 #SBATCH -J cutadapt
-#SBATCH --get-user-env
-#SBATCH --mail-user=gwee@biologie.uni-muenchen.de
-#SBATCH --clusters=biohpc_gen
-#SBATCH --partition=biohpc_gen_production
-#SBATCH --cpus-per-task=8
-#SBATCH --time=5-00:00:00
-#SBATCH -o /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/03_fresh/slurms/slurm-%j.out
 
 # sbatch 1.1.1_rawreads_pro.sh
  
@@ -15,7 +8,7 @@ conda activate biotools
 #fastqc=0.11.9 
 #multiqc=0.9.1a0
 
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
+dat="PATH/04_fresh2"
 
 echo $(date)
 STARTTIME=$(date +%s)
