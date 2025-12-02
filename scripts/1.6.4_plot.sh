@@ -1,21 +1,12 @@
 #!/bin/bash -l
 #SBATCH -J fsimplot
-#SBATCH --get-user-env
-#SBATCH --mail-user=gwee@biologie.uni-muenchen.de
-#SBATCH --clusters=biohpc_gen
-#SBATCH --partition=biohpc_gen_normal
-#SBATCH --ntasks=1
-#SBATCH --cpus-per-task=1
-#SBATCH --time=1:00:00
-#SBATCH -o /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/slurms/slurm-%j-%x.out
-
 # sbatch 1.6.4_plot.sh cor1_cor2to3_cnx1to3_cnx6_50ind_folded_all_nochr18 4PopModel7x 100 cor1 cor2to3 cnx1to3 cnx6
 # sbatch 1.6.4_plot.sh cor1_cor2to3_cnx1to3_cnx6_50ind_folded_all_nochr18 4PopModel8x 100 cor1 cor2to3 cnx1to3 cnx6
 
 conda activate easySFS
 
-ref="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
+ref="Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
+dat="Path/04_fresh2"
 
 echo $(date)
 STARTTIME=$(date +%s)
