@@ -1,20 +1,12 @@
 #!/bin/bash -l
 #SBATCH -J overlap
-#SBATCH --get-user-env
-#SBATCH --mail-user=gwee@biologie.uni-muenchen.de
-#SBATCH --clusters=biohpc_gen
-#SBATCH --partition=biohpc_gen_normal
-#SBATCH --cpus-per-task=20
-#SBATCH --time=2-00:00:00
-#SBATCH -o /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/slurms/slurm-%j-%x.out
-
 # sbatch 1.4.5_overlap.sh 134inds overlapped poplist_134
 
 module load vcftools/0.1.14-gcc8
 module load bcftools/1.10.2-gcc8
 conda activate biotools
 
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
+dat="Path/04_fresh2"
 gatkset="134inds_DP3GQ0Miss10fullinfoQ100"
 samtoolsset="samtools_DP3GQ0Miss10Q30"
 angsdset="134inds_rescaled_angsdrecalq30mindepth400genodepth3_min121"
