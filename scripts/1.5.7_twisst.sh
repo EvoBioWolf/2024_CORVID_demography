@@ -1,13 +1,5 @@
 #!/bin/bash -l
 #SBATCH -J twisst
-#SBATCH --get-user-env
-#SBATCH --mail-user=gwee@biologie.uni-muenchen.de
-#SBATCH --clusters=biohpc_gen
-#SBATCH --partition=biohpc_gen_normal
-#SBATCH --cpus-per-task=6
-#SBATCH --time=2-00:00:00
-#SBATCH -o /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/slurms/slurm-%j-%x.out
-
 # sbatch 1.5.7_twisst.sh all 134inds_overlapped_filtered_norepeats_hwe_outgroup_biallele 4pop "-g cnx6 -g cnx3 -g cor1 -g cor2 -g O --outgroup O"
 # sbatch 1.5.7_twisst.sh all 134inds_overlapped_filtered_norepeats_hwe_outgroup_biallele 3pop "-g cnx3 -g cor1 -g cor2 -g O --outgroup O"
 # sbatch 1.5.7_twisst.sh all 134inds_overlapped_filtered_norepeats_hwe_outgroup_biallele 3pop_cnx6 "-g cnx6 -g cor1 -g cor2 -g O --outgroup O"
@@ -19,10 +11,10 @@ conda activate biotools
 #module load plink2
 #using plink1.9 instead
 
-ref="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
-scaff="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/01_probes/scaffold2chr"
-gentools="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/06_results/fst/genomics_general"
+ref="Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
+dat="Path/04_fresh2"
+scaff="Path/01_probes/scaffold2chr"
+gentools="Path/04_fresh2/06_results/fst/genomics_general"
 
 echo $(date)
 STARTTIME=$(date +%s)
