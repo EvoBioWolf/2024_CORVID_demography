@@ -1,13 +1,5 @@
 #!/bin/bash -l
 #SBATCH -J msmc_ind
-#SBATCH --get-user-env
-#SBATCH --mail-user=gwee@biologie.uni-muenchen.de
-#SBATCH --clusters=biohpc_gen
-#SBATCH --partition=biohpc_gen_normal
-#SBATCH --cpus-per-task=1
-#SBATCH --time=2-00:00:00
-#SBATCH -o /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/slurms/slurm-%j-%x.out
-
 # selected samples only
 # sbatch 2.1.2_msmc_ind.sh C.cornix_IRQ641314 cnx6 80.4x
 
@@ -33,9 +25,9 @@ module load bcftools
 #picard.jar=2.25.7
 #bcftools/1.10.2-gcc8
 
-ref="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
-scaff="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/01_probes/scaffold2chr"
+ref="Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
+dat="Path/04_fresh2"
+scaff="Path/01_probes/scaffold2chr"
 
 echo $(date)
 STARTTIME=$(date +%s)
