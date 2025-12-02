@@ -1,12 +1,5 @@
 #!/bin/bash -l
 #SBATCH -J GATKrawHap
-#SBATCH --get-user-env
-#SBATCH --mail-user=gwee@biologie.uni-muenchen.de
-#SBATCH --clusters=biohpc_gen
-#SBATCH --partition=biohpc_gen_production
-#SBATCH --cpus-per-task=4
-#SBATCH --time=7-00:00:00
-#SBATCH -o /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/slurms/slurm-%j-%x.out
 
 # cd 04_markdup
 # for fname in *_markdup_cleaned.bam; do base=${fname%_markdup_cleaned.bam*}; sbatch ../1.4.3_GATKrawHap.sh ${base}; done
@@ -19,10 +12,10 @@ module load bcftools/1.10.2-gcc8
 #picard.jar=2.25.7
 #GATK=4.2.1
 
-ref="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
+ref="Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
+dat="Path/04_fresh2"
 gatk="GATK_4.2.6.1"
-kvcf="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/knownsites_filtered.V2.vcf.gz"
+kvcf="Path/04_fresh2/knownsites_filtered.V2.vcf.gz"
 
 echo $(date)
 STARTTIME=$(date +%s)
