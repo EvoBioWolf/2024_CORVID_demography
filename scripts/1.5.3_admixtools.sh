@@ -1,23 +1,12 @@
 #!/bin/bash -l
 #SBATCH -J admixall
-#SBATCH --get-user-env
-#SBATCH --mail-user=gwee@biologie.uni-muenchen.de
-#SBATCH --clusters=biohpc_gen
-#SBATCH --partition=biohpc_gen_production
-#SBATCH --cpus-per-task=4
-#SBATCH --ntasks=1
-#SBATCH --time=7-00:00:00
-#SBATCH -o /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/slurms/slurm-%j-%x.out
 
 # sbatch 1.5.3_admixtools.sh 134inds_overlapped_filtered_norepeats_hwe_outgroup_biallele 134inds_all poplist_134 1 100 2 01_134inds_outgroup_all
 # sbatch 1.5.3_admixtools.sh 134inds_overlapped_filtered_norepeats_hwe_AMcrow_biallele AM_134inds_all poplist_134_AM 1 100 2 01_134inds_AM_all
 
 module load vcftools
 
-#dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/02_outgroups/08_corvuscombine"
-#pop="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/demo/poplist"
-
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
+dat="Path/04_fresh2"
 
 echo $(date)
 STARTTIME=$(date +%s)
