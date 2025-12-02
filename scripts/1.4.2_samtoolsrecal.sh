@@ -1,12 +1,5 @@
 #!/bin/bash -l
 #SBATCH -J sam2recal
-#SBATCH --get-user-env
-#SBATCH --mail-user=gwee@biologie.uni-muenchen.de
-#SBATCH --clusters=biohpc_gen
-#SBATCH --partition=biohpc_gen_production
-#SBATCH --cpus-per-task=20
-#SBATCH --time=8-00:00:00
-#SBATCH -o /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/slurms/slurm-%j-%x.out
 
 # sbatch 1.4.2_samtoolsrecal.sh 134inds samtools_DP3GQ0Miss10Q30 poplist_134_angsd 3 0 0.1 30
 #final selected filter: samtools_DP3GQ0Miss10Q30 134inds
@@ -20,8 +13,8 @@ conda activate biotools
 #picard.jar=2.25.7
 #plink1.9 on conda
 
-ref="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
+ref="Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
+dat="Path/04_fresh2"
 
 echo $(date)
 STARTTIME=$(date +%s)
@@ -36,7 +29,7 @@ minMapQ=30;
 minQ=30;
 file="bam_134inds_rescaled"
 outdir="samtools/134inds/134inds"
-ref="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta";
+ref="Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta";
 echo running scaffold_{};
 bcftools mpileup -f ${ref} -b ${file}.filelist \
 --redo-BAQ --annotate FORMAT/AD,FORMAT/ADF,FORMAT/ADR,FORMAT/DP,FORMAT/SP,INFO/AD,INFO/ADF,INFO/ADR \
