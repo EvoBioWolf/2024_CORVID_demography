@@ -1,12 +1,5 @@
 #!/bin/bash -l
 #SBATCH -J GATKrawCall
-#SBATCH --get-user-env
-#SBATCH --mail-user=gwee@biologie.uni-muenchen.de
-#SBATCH --clusters=biohpc_gen
-#SBATCH --partition=biohpc_gen_production
-#SBATCH --cpus-per-task=20
-#SBATCH --time=14-00:00:00
-#SBATCH -o /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/slurms/slurm-%j-%x.out
 
 # sbatch 1.4.4_GATKrawCall.sh 00_134inds.txt 134inds GATKraw 2 chrDiploid poplist_134 DP3GQ0Miss10fullinfoQ100 3 0 0.1 100
 #final selected filter: DP3GQ0Miss10fullinfoQ100, 134inds
@@ -16,8 +9,8 @@ module load bcftools/1.10.2-gcc8
 conda activate biotools
 #picard.jar=2.25.7
 
-ref="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
+ref="Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
+dat="Path/2020__ancientDNA/04_fresh2"
 gatk="GATK_4.2.6.1"
 
 echo $(date)
