@@ -1,14 +1,5 @@
 #!/bin/bash -l
 #SBATCH -J 78xfolded
-#SBATCH --get-user-env
-#SBATCH --mail-user=gwee@biologie.uni-muenchen.de
-#SBATCH --clusters=serial
-#SBATCH --partition=serial_std
-#SBATCH --ntasks=1
-#SBATCH --cpus-per-task=12
-#SBATCH --time=4-00:00:00
-#SBATCH -o /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/slurms/slurm-%j-%x.out
-
 # for bs in {1..100};do for i in {7..8}; do sbatch 1.6.3_fastsimcoal_folded.sh cor1_cor2to3_cnx1to3_cnx6_50ind_folded_all_nochr18 30,30,30,10 4PopModel${i}x ${bs}; done; done #serial
 
 conda activate easySFS
