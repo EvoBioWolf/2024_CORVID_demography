@@ -4,10 +4,10 @@ library(purrr)
 library(ggpubr, lib.loc="/dss/dsshome1/lxc0E/di67kah/R")  
 library(cowplot, lib.loc="/dss/dsshome1/lxc0E/di67kah/R")
 
-setwd("/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/06_results/dsuite")
+setwd("Path/04_fresh2/06_results/dsuite")
 
 # Get list of all chromosome files (assuming they are in a folder named "chrom_files/")
-file_list <- list.files(path = "/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/01_probes/scaffold2chr/", pattern = "*.scaffolds", full.names = TRUE)
+file_list <- list.files(path = "Path/01_probes/scaffold2chr/", pattern = "*.scaffolds", full.names = TRUE)
 
 # Create a lookup table: A dataframe mapping scaffolds to chromosome numbers
 chromosome_mapping <- map_df(file_list, function(file) {
@@ -15,7 +15,7 @@ chromosome_mapping <- map_df(file_list, function(file) {
   scaffolds <- readLines(file)  # Read scaffold names from file
   data.frame(scaffold = scaffolds, chromosome = chrom_number)})
 # using Vijay's final_rho_table from 2016 paper
-recom <- read.csv("/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/06_results/twisst/final_rho_table", 
+recom <- read.csv("Path/04_fresh2/06_results/twisst/final_rho_table", 
                   header=TRUE, sep = "\t")
 recom_mean <- recom %>%
   group_by(Scaffold) %>%
