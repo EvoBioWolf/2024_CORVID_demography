@@ -9,7 +9,7 @@ library(base)
 
 args <- commandArgs(trailingOnly = TRUE)
 
-setwd("/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/05.1_recal/overlap")
+setwd("Path/04_fresh2/05.1_recal/overlap")
 
 gatk <- read.table("134inds_DP3GQ0Miss10fullinfoQ100_pos.txt", sep="")
 sam <- read.table("samtools_DP3GQ0Miss10Q30_pos.txt", sep="")
