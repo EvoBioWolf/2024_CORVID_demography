@@ -8,13 +8,6 @@ Raw reads were treated with Cutadapt 1.18 (M. Martin, 2011) to remove flanking a
 ```
 #!/bin/bash -l
 #SBATCH -J cutadapt
-#SBATCH --get-user-env
-#SBATCH --mail-user=gwee@biologie.uni-muenchen.de
-#SBATCH --clusters=biohpc_gen
-#SBATCH --partition=biohpc_gen_production
-#SBATCH --cpus-per-task=8
-#SBATCH --time=5-00:00:00
-#SBATCH -o /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/03_fresh/slurms/slurm-%j.out
 
 # sbatch 1.1.1_rawreads_pro.sh (~5 days)
  
@@ -23,7 +16,7 @@ conda activate biotools
 #fastqc=0.11.9 
 #multiqc=0.9.1a0
 
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
+dat="Path/04_fresh2"
 
 echo $(date)
 STARTTIME=$(date +%s)
@@ -67,13 +60,6 @@ The trimmed reads were then mapped to the hooded crow reference genome (GenBank 
 ```
 #!/bin/bash -l
 #SBATCH -J map
-#SBATCH --get-user-env
-#SBATCH --mail-user=gwee@biologie.uni-muenchen.de
-#SBATCH --clusters=biohpc_gen
-#SBATCH --partition=biohpc_gen_normal
-#SBATCH --cpus-per-task=6
-#SBATCH --time=2-00:00:00
-#SBATCH -o /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/slurms/slurm-%j-%x.out
 
 # for i in *.R2.fq.gz; do base=${i%_trimmed.R2.fq.gz*}; sbatch ../1.2.1_map.sh ${base}; done 
 
@@ -82,8 +68,8 @@ conda activate biotools
 #samtools=1.7-1
 #picard.jar=2.25.7
 
-ref="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
+ref="Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
+dat="Path/04_fresh2"
 
 echo $(date)
 STARTTIME=$(date +%s)
@@ -107,13 +93,6 @@ mv ${1}.bam ./bam
 ```
 #!/bin/bash -l
 #SBATCH -J markdup
-#SBATCH --get-user-env
-#SBATCH --mail-user=gwee@biologie.uni-muenchen.de
-#SBATCH --clusters=biohpc_gen
-#SBATCH --partition=biohpc_gen_normal
-#SBATCH --cpus-per-task=8
-#SBATCH --time=2-00:00:00
-#SBATCH -o /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/slurms/slurm-%j-%x.out
 
 # cd 03_readgrp
 # ls C.corone_*.bam | awk -F "_" '{print $1"_"$2}' | uniq > 00_C.corone.txt
@@ -135,8 +114,8 @@ conda activate biotools
 #picard.jar=2.25.7
 
 
-ref="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
+ref="Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
+dat="Path/04_fresh2"
 
 echo $(date)
 STARTTIME=$(date +%s)
@@ -180,21 +159,14 @@ DNA damage was assessed with MapDamage2.0 (Jónsson et al., 2013) and was detect
 ```
 #!/bin/bash -l
 #SBATCH -J mapdam
-#SBATCH --get-user-env
-#SBATCH --mail-user=gwee@biologie.uni-muenchen.de
-#SBATCH --clusters=biohpc_gen
-#SBATCH --partition=biohpc_gen_normal
-#SBATCH --cpus-per-task=2
-#SBATCH --time=2-00:00:00
-#SBATCH -o /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/slurms/slurm-%j-%x.out
 
 #cd 04*
 #for i in C.torquatus_X*_cleaned.bam; do base=${i%.bam*}; sbatch ../1.3.2_mapdamage.sh ${base}; done
 
 conda activate mapdamage
 
-ref="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
+ref="Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
+dat="Path/04_fresh2"
 
 echo $(date)
 STARTTIME=$(date +%s)
@@ -213,13 +185,6 @@ Sort by ploidy
 ```
 #!/bin/bash -l
 #SBATCH -J ploidy
-#SBATCH --get-user-env
-#SBATCH --mail-user=gwee@biologie.uni-muenchen.de
-#SBATCH --clusters=biohpc_gen
-#SBATCH --partition=biohpc_gen_normal
-#SBATCH --cpus-per-task=8
-#SBATCH --time=2-00:00:00
-#SBATCH -o /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/slurms/slurm-%j-%x.out
 
 # cd 04_markdup
 # for fname in *_markdup_cleaned.bam; do base=${fname%.bam*}; sbatch ../1.3.4_ploidy.sh ${base}; done
@@ -232,10 +197,10 @@ module load bcftools/1.10.2-gcc8
 #picard.jar=2.25.7
 #GATK=4.2.1
 
-ref="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
+ref="Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
+dat="Path/04_fresh2"
 gatk="GATK_4.2.6.1"
-kvcf="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/knownsites_filtered.V2.vcf.gz"
+kvcf="Path/04_fresh2/knownsites_filtered.V2.vcf.gz"
 
 echo $(date)
 STARTTIME=$(date +%s)
@@ -268,8 +233,8 @@ conda activate biotools
 #picard.jar=2.25.7
 #plink1.9 on conda
 
-ref="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
+ref="Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
+dat="Path/04_fresh2"
 
 echo $(date)
 STARTTIME=$(date +%s)
@@ -320,8 +285,8 @@ conda activate biotools
 #picard.jar=2.25.7
 #plink1.9 on conda
 
-ref="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
+ref="Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
+dat="Path/04_fresh2"
 
 echo $(date)
 STARTTIME=$(date +%s)
@@ -336,7 +301,7 @@ minMapQ=30;
 minQ=30;
 file="bam_134inds_rescaled"
 outdir="samtools/134inds"
-ref="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta";
+ref="Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta";
 echo running scaffold_{};
 bcftools mpileup -f ${ref} -b ${file}.filelist \
 --redo-BAQ --annotate FORMAT/AD,FORMAT/ADF,FORMAT/ADR,FORMAT/DP,FORMAT/SP,INFO/AD,INFO/ADF,INFO/ADR \
@@ -416,10 +381,10 @@ module load bcftools/1.10.2-gcc8
 #picard.jar=2.25.7
 #GATK=4.2.1
 
-ref="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
+ref="Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
+dat="Path/04_fresh2"
 gatk="GATK_4.2.6.1"
-kvcf="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/knownsites_filtered.V2.vcf.gz"
+kvcf="Path/04_fresh2/knownsites_filtered.V2.vcf.gz"
 
 echo $(date)
 STARTTIME=$(date +%s)
@@ -467,8 +432,8 @@ module load bcftools/1.10.2-gcc8
 conda activate biotools
 #picard.jar=2.25.7
 
-ref="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
+ref="Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
+dat="Path/04_fresh2"
 gatk="GATK_4.2.6.1"
 
 echo $(date)
@@ -607,7 +572,7 @@ module load vcftools/0.1.14-gcc8
 module load bcftools/1.10.2-gcc8
 conda activate biotools
 
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
+dat="Path/04_fresh2"
 gatkset="134inds_DP3GQ0Miss10fullinfoQ100"
 samtoolsset="samtools_DP3GQ0Miss10Q30"
 angsdset="134inds_rescaled_angsdrecalq30mindepth400genodepth3_min121"
@@ -676,13 +641,6 @@ The site frequency spectrum (SFS) of 134 individuals was examined and a slight e
 ```
 #!/bin/bash -l
 #SBATCH -J paralogs
-#SBATCH --get-user-env
-#SBATCH --mail-user=gwee@biologie.uni-muenchen.de
-#SBATCH --clusters=biohpc_gen
-#SBATCH --partition=biohpc_gen_normal
-#SBATCH --cpus-per-task=2
-#SBATCH --time=2-00:00:00
-#SBATCH -o /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/slurms/slurm-%j-%x.out
 
 # sbatch 1.4.5_paralogs.sh 134inds overlapped poplist_134
 
@@ -690,7 +648,7 @@ module load vcftools/0.1.14-gcc8
 module load bcftools/1.10.2-gcc8
 conda activate biotools
 
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
+dat="Path/04_fresh2"
 gatkset="134inds_DP3GQ0Miss10fullinfoQ100"
 samtoolsset="samtools_DP3GQ0Miss10Q30"
 angsdset="134inds_rescaled_angsdrecalq30mindepth400genodepth3_min121"
@@ -716,7 +674,7 @@ run `1.4.5_gvcf_combineinvariant.sh`
 #SBATCH --partition=biohpc_gen_production
 #SBATCH --cpus-per-task=16
 #SBATCH --time=10-00:00:00
-#SBATCH -o /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/slurms/slurm-%j-%x.out
+#SBATCH -o Path/04_fresh2/slurms/slurm-%j-%x.out
 
 # sbatch 1.4.5_gvcf_combineinvariant.sh 134inds overlapped poplist_134
 # combine invariant sites from GATK with the final variant vcf
@@ -725,7 +683,7 @@ module load vcftools/0.1.14-gcc8
 module load bcftools/1.10.2-gcc8
 conda activate biotools
 
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
+dat="Path/04_fresh2"
 gatkset="134inds_DP3GQ0Miss10fullinfoQ100"
 samtoolsset="samtools_DP3GQ0Miss10Q30"
 angsdset="134inds_rescaled_angsdrecalq30mindepth400genodepth3_min121"
@@ -751,7 +709,7 @@ library(ggpubr)
 
 args <- commandArgs(trailingOnly = TRUE)
 
-setwd("/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2")
+setwd("Path/04_fresh2")
 poplist <- read.delim(file="poplist_134.txt")
 
 setwd(args[2])
@@ -799,7 +757,7 @@ stringsAsFactors = FALSE)
 #extract vectors out for external plotting
 tab$POP <- poplist$pop
 
-setwd("/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2")
+setwd("Path/04_fresh2")
 setwd(args[3])
 write.csv(tab, file=paste(args[1],"snprelate.txt",sep="_"))
 
@@ -833,8 +791,8 @@ dev.off()
 # for i in {1..10}; do sbatch 1.5.1_admixture.sh 134inds_overlapped_filtered_norepeats_ldpruned $i poplist_134 overlap; done
 
 conda activate biotools
-ref="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
+ref="Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
+dat="Path/04_fresh2"
 
 echo $(date)
 STARTTIME=$(date +%s)
@@ -862,23 +820,15 @@ Run `admixtools_1000gen.R` with `1.5.3_admixtools.sh`
 ```
 #!/bin/bash -l
 #SBATCH -J admixall
-#SBATCH --get-user-env
-#SBATCH --mail-user=gwee@biologie.uni-muenchen.de
-#SBATCH --clusters=biohpc_gen
-#SBATCH --partition=biohpc_gen_production
-#SBATCH --cpus-per-task=4
-#SBATCH --ntasks=1
-#SBATCH --time=7-00:00:00
-#SBATCH -o /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/slurms/slurm-%j-%x.out
 
 # sbatch 1.5.3_admixtools.sh 134inds_overlapped_filtered_norepeats_hwe_AMcrow_biallele AM_134inds_all poplist_134_AM 1 100 2 01_134inds_AM_all
 
 module load vcftools
 
-#dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/02_outgroups/08_corvuscombine"
-#pop="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/demo/poplist"
+#dat="Path/02_outgroups/08_corvuscombine"
+#pop="Path/demo/poplist"
 
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
+dat="Path/04_fresh2"
 
 echo $(date)
 STARTTIME=$(date +%s)
@@ -910,7 +860,7 @@ library(magrittr)
 library(dplyr)
 
 args <- commandArgs(trailingOnly = TRUE)
-setwd("/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/06_results/admixtools")
+setwd("Path/04_fresh2/06_results/admixtools")
 
 genotype_data = args[1]
 dir = args[1]
@@ -948,25 +898,17 @@ Run `1.5.4_dsuite.sh`
 ```
 #!/bin/bash -l
 #SBATCH -J dsuite
-#SBATCH --get-user-env
-#SBATCH --mail-user=gwee@biologie.uni-muenchen.de
-#SBATCH --clusters=biohpc_gen
-#SBATCH --partition=biohpc_gen_normal
-#SBATCH --cpus-per-task=4
-#SBATCH --time=2-00:00:00
-#SBATCH -o /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/slurms/slurm-%j-%x.out
-#SBATCH --mem-per-cpu=4763mb
 
 # sbatch 1.5.4_dsuite.sh 05.1_recal/overlap/134inds_overlapped_filtered_norepeats_hwe_AMcrow_biallele fbranch
 
 conda activate biotools
 #picard.jar=2.25.7
 
-ref="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
-vcf="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/05.1_recal/overlap/134inds_overlapped_filtered_norepeats_outgroup.vcf.gz"
-scaff="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/01_probes/scaffold2chr"
-out="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/06_results/dsuite/dinvestigate"
+ref="Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
+dat="Path/04_fresh2"
+vcf="Path/04_fresh2/05.1_recal/overlap/134inds_overlapped_filtered_norepeats_outgroup.vcf.gz"
+scaff="Path/01_probes/scaffold2chr"
+out="Path/04_fresh2/06_results/dsuite/dinvestigate"
 
 echo $(date)
 STARTTIME=$(date +%s)
@@ -980,7 +922,7 @@ mv *_$2_50_25.txt ./dinvestigate
 ./Dsuite/Build/Dsuite Fbranch tree.nwk SETS_$2_tree.txt > fbranch_matrix.txt
 #plotting require python3.8
 conda activate py3.8
-python ./Dsuite/utils/dtools.py fbranch_mfor i in *.pop; do base=${i%.pop*}; sbatch /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/1.5.5_summarystats.sh 134inds_overlapped_filtered_norepeats_hwe_incinvariants ${base}; doneatrix.txt tree.nwk
+python ./Dsuite/utils/dtools.py fbranch_mfor i in *.pop; do base=${i%.pop*}; sbatch Path/04_fresh2/1.5.5_summarystats.sh 134inds_overlapped_filtered_norepeats_hwe_incinvariants ${base}; doneatrix.txt tree.nwk
 
 # cd dinvestigate
 mv cnx6_cnx*_cor*_50_25.txt ./cnx6_cnx_cor
@@ -999,15 +941,8 @@ Run `1.5.5_summarystats.sh`
 ```
 #!/bin/bash -l
 #SBATCH -J sumstats
-#SBATCH --get-user-env
-#SBATCH --mail-user=gwee@biologie.uni-muenchen.de
-#SBATCH --clusters=biohpc_gen
-#SBATCH --partition=biohpc_gen_normal
-#SBATCH --cpus-per-task=2
-#SBATCH --time=2-00:00:00
-#SBATCH -o /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/slurms/slurm-%j-%x.out
 
-# for i in *.pop; do base=${i%.pop*}; sbatch /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/1.5.5_summarystats.sh 134inds_overlapped_filtered_norepeats_hwe_incinvariants ${base}; done
+# for i in *.pop; do base=${i%.pop*}; sbatch Path/04_fresh2/1.5.5_summarystats.sh 134inds_overlapped_filtered_norepeats_hwe_incinvariants ${base}; done
 
 
 conda activate biotools
@@ -1015,8 +950,8 @@ module load bcftools/1.10.2-gcc8
 module load vcftools/0.1.14-gcc8
 #picard.jar=2.25.7
 
-ref="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
+ref="Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
+dat="Path/04_fresh2"
 
 echo $(date)
 STARTTIME=$(date +%s)
@@ -1064,13 +999,6 @@ Run `1.5.6_fst.sh`
 ```
 #!/bin/bash -l
 #SBATCH -J fst
-#SBATCH --get-user-env
-#SBATCH --mail-user=gwee@biologie.uni-muenchen.de
-#SBATCH --clusters=biohpc_gen
-#SBATCH --partition=biohpc_gen_normal
-#SBATCH --cpus-per-task=8
-#SBATCH --time=2-00:00:00
-#SBATCH -o /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/slurms/slurm-%j-%x.out
 
 # sbatch 1.5.6_fst.sh 134inds_overlapped_filtered_norepeats_hwe_incinvariants cnx3P cor2 hz1 poplist_134
 
@@ -1078,9 +1006,9 @@ module load vcftools
 module load bcftools
 conda activate biotools
 
-ref="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
-scaff="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/01_probes/scaffold2chr"
+ref="Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
+dat="Path/04_fresh2"
+scaff="Path/01_probes/scaffold2chr"
 
 echo $(date)
 STARTTIME=$(date +%s)
@@ -1141,13 +1069,6 @@ Run `1.5.6_tajD.sh`
 ```
 #!/bin/bash -l
 #SBATCH -J tajD
-#SBATCH --get-user-env
-#SBATCH --mail-user=gwee@biologie.uni-muenchen.de
-#SBATCH --clusters=biohpc_gen
-#SBATCH --partition=biohpc_gen_normal
-#SBATCH --cpus-per-task=2
-#SBATCH --time=2-00:00:00
-#SBATCH -o /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/slurms/slurm-%j-%x.out
 
 # for i in 10000 50000
 # do
@@ -1158,9 +1079,9 @@ module load vcftools
 module load bcftools
 conda activate biotools
 
-ref="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
-scaff="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/01_probes/scaffold2chr"
+ref="Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
+dat="Path/04_fresh2"
+scaff="Path/01_probes/scaffold2chr"
 
 echo $(date)
 STARTTIME=$(date +%s)
@@ -1182,22 +1103,14 @@ Run `1.6.1_neutral.sh`
 ```
 #!/bin/bash -l
 #SBATCH -J neutral
-#SBATCH --get-user-env
-#SBATCH --mail-user=gwee@biologie.uni-muenchen.de
-#SBATCH --clusters=biohpc_gen
-#SBATCH --partition=biohpc_gen_normal
-#SBATCH --cpus-per-task=2
-#SBATCH --time=2-00:00:00
-#SBATCH -o /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/slurms/slurm-%j-%x.out
-#SBATCH --mem-per-cpu=4763mb
 
-# for i in *.pop; do base=${i%.pop*}; sbatch /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/1.6.1_neutral.sh 134inds_overlapped_filtered_norepeats_hwe ${base}; done
+# for i in *.pop; do base=${i%.pop*}; sbatch Path/04_fresh2/1.6.1_neutral.sh 134inds_overlapped_filtered_norepeats_hwe ${base}; done
 
 conda activate py2
 module load vcftools/0.1.14-gcc8
 
-ref="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
+ref="Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
+dat="Path/04_fresh2"
 
 echo $(date)
 STARTTIME=$(date +%s)
@@ -1237,14 +1150,6 @@ See ` 1.6.1_neutralvcf.sh`
 ```
 #!/bin/bash -l
 #SBATCH -J neutralvcf
-#SBATCH --get-user-env
-#SBATCH --mail-user=gwee@biologie.uni-muenchen.de
-#SBATCH --clusters=biohpc_gen
-#SBATCH --partition=biohpc_gen_normal
-#SBATCH --cpus-per-task=2
-#SBATCH --time=2-00:00:00
-#SBATCH -o /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/slurms/slurm-%j-%x.out
-#SBATCH --mem-per-cpu=4763mb
 
 # sbatch 1.6.1_neutralvcf.sh 134inds_overlapped_filtered_norepeats_hwe neuall_incIRQ
 # sbatch 1.6.1_neutralvcf.sh 134inds_overlapped_filtered_norepeats_hwe_amcrow_moneduloides_monedula_biallele neuall_incIRQ
@@ -1253,8 +1158,8 @@ conda activate py2
 module load vcftools/0.1.14-gcc8
 #picard.jar=2.25.7
 
-ref="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
+ref="Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
+dat="Path/04_fresh2"
 
 echo $(date)
 STARTTIME=$(date +%s)
@@ -1306,8 +1211,8 @@ conda activate biotools
 #picard.jar=2.25.7
 #bcftools/1.10.2-gcc8
 
-ref="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
+ref="Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
+dat="Path/04_fresh2"
 echo $(date)
 STARTTIME=$(date +%s)
 
@@ -1372,9 +1277,9 @@ module load bcftools
 #picard.jar=2.25.7
 #bcftools/1.10.2-gcc8
 
-ref="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
-scaff="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/01_probes/scaffold2chr"
+ref="Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
+dat="Path/04_fresh2"
+scaff="Path/01_probes/scaffold2chr"
 
 echo $(date)
 STARTTIME=$(date +%s)
@@ -1453,15 +1358,15 @@ done
 # for i in *.poplist
 # do
 # base=${i%.poplist*}
-# sbatch /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/2.2.1_1dsfs.sh 05.1_recal/overlap/neuall_incIRQ/134inds_overlapped_filtered_norepeats_hwe_neuall_incIRQ_nomissing_ldpruned ${base} $(wc -l $i | sed "s/$i//g")
+# sbatch Path/04_fresh2/2.2.1_1dsfs.sh 05.1_recal/overlap/neuall_incIRQ/134inds_overlapped_filtered_norepeats_hwe_neuall_incIRQ_nomissing_ldpruned ${base} $(wc -l $i | sed "s/$i//g")
 # done
 
 module load vcftools/0.1.14-gcc8
 module load bcftools/1.10.2-gcc8
 conda activate easySFS
 
-ref="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
+ref="Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
+dat="Path/04_fresh2"
 
 echo $(date)
 STARTTIME=$(date +%s)
@@ -1479,13 +1384,13 @@ nseq=$(echo $(( 2*$3 )))
 # for i in *.poplist
 # do
 # base=${i%.poplist*}
-# sbatch /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/2.2.2_stairway.sh ${base}
+# sbatch Path/04_fresh2/2.2.2_stairway.sh ${base}
 # done
 
 conda activate biotools 
 
-ref="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
+ref="Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
+dat="Path/04_fresh2"
 
 echo $(date)
 STARTTIME=$(date +%s)
@@ -1515,13 +1420,13 @@ Therefore scaling applied:
 # for i in *.poplist
 # do
 # base=${i%.poplist*}
-# sbatch /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/2.2.2_stairway_rescaled.sh ${base}
+# sbatch Path/04_fresh2/2.2.2_stairway_rescaled.sh ${base}
 # done
 
 conda activate biotools 
 
-ref="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
+ref="Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
+dat="Path/04_fresh2"
 
 echo $(date)
 STARTTIME=$(date +%s)
@@ -1541,7 +1446,7 @@ bash ${1}_folded.blueprint.plot.sh
 
 `2.3.1_smcpp_neuperpopvcf.sh`
 ```
-for i in c*.poplist; do base=${i%.poplist*}; sbatch /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/2.3.1_*.sh 134inds_overlapped_filtered_norepeats_hwe_neuall_incIRQ_ldpruned ${base}; done
+for i in c*.poplist; do base=${i%.poplist*}; sbatch Path/04_fresh2/2.3.1_*.sh 134inds_overlapped_filtered_norepeats_hwe_neuall_incIRQ_ldpruned ${base}; done
 
 conda activate singularity
 #there's a cap of 200 container images per 6 hours across all my submitted jobs to singular!
@@ -1592,22 +1497,14 @@ Generates unfolded and folded SFS from the ancestral state ascertained VCF with 
 ```
 #!/bin/bash -l
 #SBATCH -J easySFS
-#SBATCH --get-user-env
-#SBATCH --mail-user=gwee@biologie.uni-muenchen.de
-#SBATCH --clusters=biohpc_gen
-#SBATCH --partition=biohpc_gen_normal
-#SBATCH --ntasks=1
-#SBATCH --cpus-per-task=1
-#SBATCH --time=2-00:00:00
-#SBATCH -o /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/slurms/slurm-%j-%x.out
 
 # sbatch 1.6.3_easySFS.sh 05.1_recal/overlap/neuall_incIRQ/134inds_overlapped_filtered_norepeats_hwe_neuall_incIRQ cor1_cor2to3_cnx1to3_cnx6_50ind_folded_all_nochr18 30,30,30,10 4PopModel1
 
 
 conda activate easySFS
 
-ref="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
+ref="Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
+dat="Path/04_fresh2"
 
 echo $(date)
 STARTTIME=$(date +%s)
@@ -1647,21 +1544,13 @@ Run `1.6.3_fastsimcoal_folded.sh` to generate 100 replicates for each model with
  ```
 #!/bin/bash -l
 #SBATCH -J fsimcoal
-#SBATCH --get-user-env
-#SBATCH --mail-user=gwee@biologie.uni-muenchen.de
-#SBATCH --clusters=serial
-#SBATCH --partition=serial_std
-#SBATCH --ntasks=1
-#SBATCH --cpus-per-task=12
-#SBATCH --time=4-00:00:00
-#SBATCH -o /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/slurms/slurm-%j-%x.out
 
 # for bs in {1..100};do for i in {7..8}; do sbatch 1.6.3_fastsimcoal_folded.sh cor1_cor2to3_cnx1to3_cnx6_50ind_folded_all_nochr18 30,30,30,10 4PopModel${i}x ${bs}; done; do$
 
 conda activate easySFS
 
-ref="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
+ref="Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
+dat="Path/04_fresh2"
 
 echo $(date)
 STARTTIME=$(date +%s)
@@ -1690,23 +1579,14 @@ Run `1.6.4_plot.sh`:
 ```
 #!/bin/bash -l
 #SBATCH -J fsimplot
-#SBATCH --get-user-env
-#SBATCH --mail-user=gwee@biologie.uni-muenchen.de
-#SBATCH --clusters=biohpc_gen
-#SBATCH --partition=biohpc_gen_normal
-#SBATCH --ntasks=1
-#SBATCH --cpus-per-task=1
-#SBATCH --time=1:00:00
-#SBATCH -o /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/slurms/slurm-%j-%x.out
-
 
 # sbatch 1.6.4_plot.sh cor1_cor2to3_cnx1to3_cnx6_50ind_unfolded_all 4PopModel4x3 100 cor1 cor2to3 cnx1to3 cnx6
 # sbatch 1.6.4_plot.sh cor1_cor2to3_cnx1to3_cnx6_50ind_unfolded_all 4PopModel3x3 100 cor1 cor2to3 cnx1to3 cnx6
 
 conda activate easySFS
 
-ref="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
+ref="Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
+dat="Path/04_fresh2"
 
 echo $(date)
 STARTTIME=$(date +%s)
@@ -1817,22 +1697,13 @@ Run `1.6.4_modelfit_folded.sh` for folded SFS
 ```
 #!/bin/bash -l
 #SBATCH -J modelfit
-#SBATCH --get-user-env
-#SBATCH --mail-user=gwee@biologie.uni-muenchen.de
-#SBATCH --clusters=cm2_tiny
-#SBATCH --partition=cm2_tiny
-#SBATCH --ntasks=1
-#SBATCH --cpus-per-task=2
-#SBATCH --time=3-00:00:00
-#SBATCH -o /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/slurms/slurm-%j-%x.out
-
 # for i in {7..8}; do sbatch 1.6.4_modelfit_folded.sh 4PopModel${i}_fastsimcoal 4PopModel${i} fastsimcoal cor1_cor2to3_cnx1to3_cnx6_50ind_folded_all_nochr18; done
 # for i in {3..4}; do sbatch 1.6.4_modelfit_folded.sh 4PopModel${i}x_jaatha 4PopModel${i}x jaatha; done
 
 conda activate easySFS
 
-ref="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
+ref="Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
+dat="Path/04_fresh2"
 
 echo $(date)
 STARTTIME=$(date +%s)
@@ -1902,21 +1773,13 @@ Run `1.6.5_simparabs_folded.sh` for folded SFS:
 ```
 #!/bin/bash -l
 #SBATCH -J parabsfolded
-#SBATCH --get-user-env
-#SBATCH --mail-user=gwee@biologie.uni-muenchen.de
-#SBATCH --clusters=serial
-#SBATCH --partition=serial_std
-#SBATCH --ntasks=1
-#SBATCH --cpus-per-task=8
-#SBATCH --time=4-00:00:00
-#SBATCH -o /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/slurms/slurm-%j-%x.out
 
 for i in {1..100}; do sbatch 1.6.5_simparabs_folded.sh 4PopModel7_fastsimcoal $i finite; done 
 
 conda activate easySFS
 
-ref="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
+ref="Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
+dat="Path/04_fresh2"
 
 echo $(date)
 STARTTIME=$(date +%s)
@@ -1945,11 +1808,11 @@ com <- c("Model7x")
 header <- c("RUN","NPOP1","NPOP2","NPOP3","NPOP4","NANC1","NANC2","NANC3","TMRMG",
            "MIG01R","MIG10R" ,"MIG12R" ,"MIG21R","MIG23R","MIG32R","GROW1", "GROW2", "TDIV3","TDIV2","TDIV1", "TEGR1", "TEGR2", "MaxEstLhood","MaxObsLhood")
 
-setwd("/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/fastsimcoal2/4Pop/cor1_cor2to3_cnx1to3_cnx6_50ind_folded_all_nochr18/fastsimcoal2/bestruns")
+setwd("Path/04_fresh2/fastsimcoal2/4Pop/cor1_cor2to3_cnx1to3_cnx6_50ind_folded_all_nochr18/fastsimcoal2/bestruns")
 standardmodelSPA <- read.delim(paste("./4Pop",com[1],"/4Pop",com[1],".bestlhoods",sep=""), header=TRUE, sep="\t")
 RUN <- 0
 standardmodelSPA <- cbind(RUN,standardmodelSPA)
-setwd("/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/fastsimcoal2/4Pop/cor1_cor2to3_cnx1to3_cnx6_50ind_folded_all_nochr18/fastsimcoal2/bestruns/modelfit/4PopModel7x_fastsimcoal_finite")
+setwd("Path/04_fresh2/fastsimcoal2/4Pop/cor1_cor2to3_cnx1to3_cnx6_50ind_folded_all_nochr18/fastsimcoal2/bestruns/modelfit/4PopModel7x_fastsimcoal_finite")
 modelSPAbs <- read.delim(paste("4Pop",com[1],"_fastsimcoal_finite.bestlhoods.all",sep=""), header=FALSE, sep="\t")
 colnames(modelSPAbs) <- header
 modelSPA <- rbind(standardmodelSPA,modelSPAbs)
@@ -2038,13 +1901,13 @@ scaffold_7: chr8 (161/293) ~150000bp 50858-198375
 
 #### blast
 ```
-ref="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
+ref="Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
 
-cd /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/fastsimcoal2/4Pop/cor1_cor2to3_cnx1to3_cnx6_50ind_folded_all_nochr18/fastsimcoal2/bestruns/blueregion
+cd Path/04_fresh2/fastsimcoal2/4Pop/cor1_cor2to3_cnx1to3_cnx6_50ind_folded_all_nochr18/fastsimcoal2/bestruns/blueregion
 
-bedtools getfasta -fi /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta -bed scaffold29.bed -fo scaffold29.fa
+bedtools getfasta -fi Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta -bed scaffold29.bed -fo scaffold29.fa
 
-bedtools getfasta -fi /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta -bed scaffold7.bed -fo scaffold7.fa
+bedtools getfasta -fi Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta -bed scaffold7.bed -fo scaffold7.fa
 ```
 ---
 
@@ -2067,7 +1930,7 @@ Run `1.5.7_twisst.sh`
 #SBATCH --partition=biohpc_gen_normal
 #SBATCH --cpus-per-task=6
 #SBATCH --time=2-00:00:00
-#SBATCH -o /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/slurms/slurm-%j-%x.out
+#SBATCH -o Path/04_fresh2/slurms/slurm-%j-%x.out
 
 # sbatch 1.5.7_twisst.sh all 134inds_overlapped_filtered_norepeats_hwe_outgroup_biallele 4pop "-g cnx6 -g cnx3 -g cor1 -g cor2 -g O --outgroup O"
 # sbatch 1.5.7_twisst.sh all 134inds_overlapped_filtered_norepeats_hwe_outgroup_biallele 3pop "-g cnx3 -g cor1 -g cor2 -g O --outgroup O"
@@ -2079,10 +1942,10 @@ conda activate biotools
 #module load plink2
 #using plink1.9 instead
 
-ref="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
-scaff="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/01_probes/scaffold2chr"
-gentools="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/06_results/fst/genomics_general"
+ref="Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
+dat="Path/04_fresh2"
+scaff="Path/01_probes/scaffold2chr"
+gentools="Path/04_fresh2/06_results/fst/genomics_general"
 
 echo $(date)
 STARTTIME=$(date +%s)
@@ -2141,8 +2004,8 @@ module load vcftools/0.1.14-gcc8
 module load bcftools/1.10.2-gcc8
 conda activate easySFS
 
-ref="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
+ref="Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
+dat="Path/04_fresh2"
 
 echo $(date)
 STARTTIME=$(date +%s)
@@ -2176,7 +2039,7 @@ library(ggtern)
 library(ggplot2)
 library(dplyr)
 
-setwd("/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/06_results/twisst")
+setwd("Path/04_fresh2/06_results/twisst")
 source("plot_twisst.R")
 
 hash = paste("#topo1 (O,((EURn,SPA),EURc));",
@@ -2325,7 +2188,7 @@ grid.arrange(c2,c1,ncol=2)
 dev.off()
 
 ############ simulated twisst ############
-setwd("/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/fastsimcoal2/4Pop/cor1_cor2to3_cnx1to3_cnx6
+setwd("Path/04_fresh2/fastsimcoal2/4Pop/cor1_cor2to3_cnx1to3_cnx6
 _50ind_folded_all_nochr18/fastsimcoal2/bestruns/twisst")
 weights_file_3popsim7 <- "./3PopModel7xtree_run2/3PopModel7x_run2.weights.csv.gz"
 weights_file_3popsim8 <- "./3PopModel8xtree_run2/3PopModel8x_run2.weights.csv.gz"
