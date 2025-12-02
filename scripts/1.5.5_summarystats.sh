@@ -1,13 +1,5 @@
 #!/bin/bash -l
 #SBATCH -J sumstats
-#SBATCH --get-user-env
-#SBATCH --mail-user=gwee@biologie.uni-muenchen.de
-#SBATCH --clusters=biohpc_gen
-#SBATCH --partition=biohpc_gen_normal
-#SBATCH --cpus-per-task=2
-#SBATCH --time=2-00:00:00
-#SBATCH -o /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/slurms/slurm-%j-%x.out
-
 # for i in *.pop; do base=${i%.pop*}; sbatch /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/1.5.5_summarystats.sh 134inds_overlapped_filtered_norepeats_hwe_incinvariants ${base}; done
 
 conda activate biotools
@@ -15,8 +7,8 @@ module load bcftools/1.10.2-gcc8
 module load vcftools/0.1.14-gcc8
 #picard.jar=2.25.7
 
-ref="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
+ref="Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
+dat="Path/04_fresh2"
 
 echo $(date)
 STARTTIME=$(date +%s)
