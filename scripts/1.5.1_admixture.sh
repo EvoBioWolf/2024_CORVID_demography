@@ -1,21 +1,13 @@
 #!/bin/bash -l
 #SBATCH -J admix
-#SBATCH --get-user-env
-#SBATCH --mail-user=gwee@biologie.uni-muenchen.de
-#SBATCH --clusters=biohpc_gen
-#SBATCH --partition=biohpc_gen_production
-#SBATCH --cpus-per-task=4
-#SBATCH --time=7-00:00:00
-#SBATCH -o /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/slurms/slurm-%j-%x.out
-#SBATCH --mem-per-cpu=4763mb
 
 # for i in {1..10}; do sbatch 1.5.1_admixture.sh 134inds_overlapped_filtered_norepeats_ldpruned $i poplist_134 overlap; done
 
 conda activate biotools
 #picard.jar=2.25.7
 
-ref="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
+ref="Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
+dat="Path/04_fresh2"
 
 echo $(date)
 STARTTIME=$(date +%s)
