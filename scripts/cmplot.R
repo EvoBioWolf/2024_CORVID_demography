@@ -29,7 +29,7 @@ scaffto18 <- c("scaffold_1026","scaffold_107","scaffold_78","scaffold_60","scaff
                "scaffold_261","scaffold_271","scaffold_305","scaffold_320",
                "scaffold_458","scaffold_971","scaffold_995","scaffold_1056")
 
-setwd("/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/06_results/fst")
+setwd("Path/04_fresh2/06_results/fst")
 for (i in args[1]) {
 x <- read.delim(paste(args[2],"_",i,".win.chr", sep=""), header=FALSE, sep="")
 x <- x[-1,]
