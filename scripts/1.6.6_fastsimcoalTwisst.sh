@@ -1,13 +1,5 @@
 #!/bin/bash -l
 #SBATCH -J twisstfsimcoal
-#SBATCH --get-user-env
-#SBATCH --mail-user=gwee@biologie.uni-muenchen.de
-#SBATCH --clusters=biohpc_gen
-#SBATCH --partition=biohpc_gen_normal
-#SBATCH --ntasks=1
-#SBATCH --cpus-per-task=2
-#SBATCH --time=2-00:00:00
-#SBATCH -o /dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/slurms/slurm-%j-%x.out
 
 # sbatch 1.6.6_fastsimcoalTwisst.sh 3PopModel7x 3popsim run1
 # sbatch 1.6.6_fastsimcoalTwisst.sh 3PopModel8x 3popsim run1
@@ -24,8 +16,8 @@ module load vcftools/0.1.14-gcc8
 module load bcftools/1.10.2-gcc8
 conda activate easySFS
 
-ref="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
-dat="/dss/dsslegfs01/pr53da/pr53da-dss-0018/projects/2020__ancientDNA/04_fresh2"
+ref="Path/04_fresh2/genome_HC_allpaths41687_v2.5_chrW.fasta"
+dat="Path/04_fresh2"
 
 echo $(date)
 STARTTIME=$(date +%s)
